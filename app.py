@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from description import run_description
 from data_intro import run_dataIntro
-from eda import run_eda
+from eda.eda import run_eda
 from stats import run_stat
 from ml import run_ml
 
@@ -13,7 +13,10 @@ def main():
                 icons=['house', 'card-checklist', 'card-checklist', 'bar-chart', 'clipboard-data', 'clipboard-data'],
                 menu_icon="cast", default_index=1, orientation = 'vertical', key='main_option')
 
-    if selected == 'Description':
+    if selected == 'Home':
+        pass
+
+    elif selected == 'Description':
         run_description()
     elif selected == 'Data':
         run_dataIntro()
