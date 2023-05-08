@@ -6,7 +6,7 @@ import streamlit as st
 
 @st.cache_data
 def load_data():
-    comp_dir = Path('data/store-sales-time-series-forecasting')
+    comp_dir = Path('data')
     train = pd.read_csv(comp_dir / 'train_sample_201516.csv')
     stores = pd.read_csv(comp_dir / 'stores.csv')
     oil = pd.read_csv(comp_dir / 'oil.csv')

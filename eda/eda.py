@@ -19,12 +19,12 @@ from eda.earthquake_sales import total_Sales
 from eda.oil import run_oil_sales
 from utils import load_data
 
-
 @st.cache_resource(experimental_allow_widgets=True)
 def show_data(train, stores, oil, transactions, holidays_events):
     st.markdown("## Data Preview")
     sample_ratio = st.sidebar.slider('Sample Ratio (0~1)', min_value=0.1, max_value=1.0, step=0.1)
     tab1, tab2, tab3, tab4 = st.tabs(['train', 'stores', 'oil', 'transactions'])
+
 
     with tab1:
         with st.expander("Train Data"):
@@ -196,6 +196,8 @@ def show_chart(train, stores, oil, transactions, holidays_events):
                       showlegend=False)
     st.plotly_chart(fig2)
     st.markdown("📌 **Interpret:** As we can appreeciate, sales has an constantly increasing trend during recorded years.", unsafe_allow_html=True)
+
+
 
 
 def run_eda():
