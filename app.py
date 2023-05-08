@@ -14,6 +14,8 @@ def main():
                        layout='wide',
                        page_icon='💹')
     with st.sidebar:
+        st.sidebar.markdown('<style>div.row-widget.stRadio > div{color: blue !important;}</style>',
+                            unsafe_allow_html=True)
         selected = option_menu("Main Menu", ['Home', 'Description', 'Data', 'EDA', 'STAT', 'ML'],
                 icons=['house', 'card-checklist', 'card-checklist', 'bar-chart', 'clipboard-data', 'clipboard-data'],
                 menu_icon="cast", default_index=1, orientation = 'vertical', key='main_option')
