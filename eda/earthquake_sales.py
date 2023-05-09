@@ -9,6 +9,20 @@ import streamlit as st
 
 def total_Sales(train, stores):
     st.title("Total Sales")
+    st.markdown("""
+        <div style="color:blue;display:fill;border-radius:8px;
+            background-color:#323232;font-size:150%;
+            font-family:Nexa;letter-spacing:0.5px">
+        <p style="padding: 8px;color:white;"><b>Viz 1.There is a graph that shows us daily Total Sales Across All Stores.  </b></p>
+    </div>
+   """, unsafe_allow_html=True)
+    st.markdown("""
+    Interpretation:\n\n
+    Overall, I see an uptrend in total sales across the country since 2013.\n\n
+    Let's check why there are those super deep valleys near many year's end.\n\n
+    My guess now is that all the shop are closed at the New Year or New Year Eve for holiday so there is no sales.\n\n
+    I will reconfirm this again at the holiday analyses.\n\n
+    Noted that the earthquake marked with the red dotted band seems to boost the sales few days after.""")
     # 데이터 타입 변환
     train.onpromotion = train.onpromotion.astype("float16")
     train.sales = train.sales.astype("float32")
@@ -26,7 +40,7 @@ def total_Sales(train, stores):
     ax.text(pd.Timestamp('2016-04-20'), 1400000, 'The Earthquake', rotation=360, c='r')
     plt.xticks(rotation=70)
     st.pyplot(fig)
-    st.markdown("설명 추가로 넣어주세요!")
+
     # 각 스토어의 일일 총 판매량 딕셔너리로 만들기
     daily_sale_dict = {}
     for i in train.store_nbr.unique():
@@ -42,7 +56,16 @@ def total_Sales(train, stores):
         sale.plot()
         plt.axvline(x=pd.Timestamp('2016-04-16'), color='r', linestyle='--', linewidth=2, alpha=0.3)  # mark the earthquake
     st.pyplot(fig)
-    st.markdown("설명 추가로 넣어주세요")
+    st.markdown("Interpretation:\n\n"
+                "-There are so many gaps or white space in some stores sales record.\n\n" 
+                "-I guess they are from either temporary store close or the store not yet operate.\n\n" 
+                "-One thing to note is that, from times to times,\n\n"
+                "-there will be a sharp spike in sales (ex. store # 35 which had 3 spikes around the year's end of 2014, 2015, 2016.\n\n"
+                "-This may need futher scrutinization.\n\n"
+                "-Considering the earthquake, it affected the sales variedly from store to store. Some store such as 18,20,21,etc.. saw a great one time spike.\n\n"
+                "-Some store such as store 5,26,35,etc.. didn't have any huge sales changes. However, for store 53, it's the gamechanger.\n\n"
+                "-Store 53 had gone through a long duration of sale increase for years.\n\n"
+                "-The main theme here is that, on average, store sales are in uptrend since 2013.")
 
     # 제품군별 매출 딕셔너리로 만들기
     by_fam_dic = {}
@@ -63,4 +86,8 @@ def total_Sales(train, stores):
         plt.axvline(x=pd.Timestamp('2016-04-16'), color='r', linestyle='--', linewidth=2, alpha=0.3)  # mark the earthquake
 
     st.pyplot(fig)
-    st.markdown("설명 추가로 넣어주세요")
+    st.markdown("Interpretation:\n\n"
+                "- Each family has their own selling paterns.\n\n"
+                "- However, Frozen Food and School and Office Supplies shown highly seasonal cycle.\n\n"
+                "- Frozen Food : Sell more on New Year\n\n"
+                "- School and Office Supplies: Sale more around AUG")
